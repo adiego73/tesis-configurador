@@ -25,6 +25,10 @@ let ConfigureCheckpointsComponent = class ConfigureCheckpointsComponent {
     getConfigurationString() {
         return JSON.stringify(this.configuration);
     }
+    saveFile() {
+        var file = new File([JSON.stringify(this.configuration)], "rutina.json", { type: "text/json;charset=utf-8" });
+        saveAs(file);
+    }
 };
 ConfigureCheckpointsComponent = __decorate([
     core_1.Component({
@@ -41,6 +45,9 @@ ConfigureCheckpointsComponent = __decorate([
 </div>
 <div>
     <textarea readonly>{{getConfigurationString()}}</textarea>
+</div>
+<div>
+    <button (click)="saveFile()">GUARDAR</button>
 </div>
     `
     }), 

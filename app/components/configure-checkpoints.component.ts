@@ -3,6 +3,8 @@ import {ActivatedRoute} from '@angular/router';
 import {Checkpoint} from "../model/Checkpoint";
 import {MissionConfiguration} from "../model/MissionConfiguration";
 
+declare function saveAs(data:Blob);
+
 @Component({
     selector: "configure-checkpoints",
     template: `
@@ -17,6 +19,9 @@ import {MissionConfiguration} from "../model/MissionConfiguration";
 </div>
 <div>
     <textarea readonly>{{getConfigurationString()}}</textarea>
+</div>
+<div>
+    <button (click)="saveFile()">GUARDAR</button>
 </div>
     `
 })
@@ -34,6 +39,11 @@ export class ConfigureCheckpointsComponent {
 
     public getConfigurationString(){
         return JSON.stringify(this.configuration);
+    }
+
+    public saveFile(){
+        var file = new File([JSON.stringify(this.configuration)], "rutina.json", {type: "text/json;charset=utf-8"});
+        saveAs(file);
     }
 
 }
