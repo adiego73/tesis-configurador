@@ -1,27 +1,12 @@
 import { Component } from '@angular/core';
 import {MisionService} from "../services/mision.service";
+import {MissionConfiguration} from "../model/MissionConfiguration";
+import {Mission} from "../model/Mission";
 
 @Component({
     selector: 'my-app',
-    providers: [MisionService],
-    template: `<h1>Mision:</h1>
-                <div>
-                    <h3>{{mision.title}}</h3>
-                    <article>
-                        {{mision.text}}
-                    </article>
-                </div>
-                <div>
-                    <button>Next >></button>
-                </div>
-`
+    template: ` <router-outlet></router-outlet>`
 })
 export class AppComponent {
-    private mision:any;
-
-    constructor(private _misionService:MisionService)
-    {
-        this.mision = _misionService.getRandomMision();
-    }
-
+    
 }

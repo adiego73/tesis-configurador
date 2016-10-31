@@ -1,9 +1,10 @@
 import {Injectable} from "@angular/core"
+import {Mission} from "../model/Mission";
 
 @Injectable()
 export class MisionService{
 
-    public getRandomMision():any{
-        return {title:"mision random", "text": "texto de mision random"};
+    public getRandomMision():Mission{
+        return new Mission({title:"mision random", description: "texto de mision random"});
     }
 };

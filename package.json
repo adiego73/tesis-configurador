@@ -5,8 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "electron .",
-    "postinstall": "typings install"
+    "start": "electron ."
   },
   "author": "Diego Avila",
   "license": "BSD",

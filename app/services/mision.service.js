@@ -9,9 +9,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 const core_1 = require("@angular/core");
+const Mission_1 = require("../model/Mission");
 let MisionService = class MisionService {
     getRandomMision() {
-        return { title: "mision random", "text": "texto de mision random" };
+        return new Mission_1.Mission({ title: "mision random", description: "texto de mision random" });
     }
 };
 MisionService = __decorate([
