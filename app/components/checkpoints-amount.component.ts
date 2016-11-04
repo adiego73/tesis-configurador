@@ -5,10 +5,11 @@ import {Component} from "@angular/core"
     template:`
         <div>
             <label>Cantidad de destinos</label>
-             <input type="number" [(ngModel)]="amount"/>
+             <input min="0" type="number" [(ngModel)]="amount"/>
         </div>
         <div>
-            <button [routerLink]="['/chekpoints-config', amount]">Siguiente >> {{amount}}</button>
+            <button [routerLink]="['/']"><< Atrás</button>
+            <button [disabled]="amount <= 0" [routerLink]="['/chekpoints-config', amount]">Siguiente >> {{amount}}</button>
         </div>
     `
 })

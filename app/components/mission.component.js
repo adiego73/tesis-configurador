@@ -9,17 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 const core_1 = require("@angular/core");
-const mision_service_1 = require("../services/mision.service");
+const mission_service_1 = require("../services/mission.service");
 let MissionComponent = class MissionComponent {
     constructor(_misionService) {
         this._misionService = _misionService;
-        this.mission = _misionService.getRandomMision();
+        this.mission = (selectedMission != undefined && selectedMission > -1) ? _misionService.getMission(selectedMission) : this.mission = _misionService.getRandomMission();
+        selectedMission = this.mission.id;
+    }
+    getRandomMission() {
+        this.mission = this._misionService.getRandomMission();
+        selectedMission = this.mission.id;
     }
 };
 MissionComponent = __decorate([
     core_1.Component({
         selector: "mission-comp",
-        providers: [mision_service_1.MisionService],
+        providers: [mission_service_1.MissionService],
         template: `
     <h1>Mision:</h1>
                 <div>
@@ -29,10 +34,11 @@ MissionComponent = __decorate([
                     </article>
                 </div>
                 <div>
+                    <button (click)="getRandomMission()" >Obtener Nueva Mision</button>
                     <button [routerLink]="['/chekpoints']">Siguiente >></button>
                 </div>`
     }), 
-    __metadata('design:paramtypes', [mision_service_1.MisionService])
+    __metadata('design:paramtypes', [mission_service_1.MissionService])
 ], MissionComponent);
 exports.MissionComponent = MissionComponent;
 //# sourceMappingURL=mission.component.js.map

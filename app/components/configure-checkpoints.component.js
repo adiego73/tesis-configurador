@@ -36,9 +36,9 @@ ConfigureCheckpointsComponent = __decorate([
         template: `
 <div *ngFor="let checkpoint of configuration.checkpoints">
         <div>
-              <label>ID de destino: </label> <input type="number" [(ngModel)]="checkpoint.id"/> <br/>
-              <label>Tiempo en segundos: </label> <input type="number" [(ngModel)]="checkpoint.time"/> <br/>
-              <label>Altura en decimetros: </label> <input type="number" [(ngModel)]="checkpoint.altura"/>
+              <label>ID de destino: </label> <input min="0" type="number" [(ngModel)]="checkpoint.id"/> <br/>
+              <label>Tiempo en segundos: </label> <input min="0" type="number" [(ngModel)]="checkpoint.time"/> <br/>
+              <label>Altura en milímetros: </label> <input min="0" type="number" [(ngModel)]="checkpoint.altura"/>
               <br/>
               <hr>
         </div>
@@ -47,6 +47,7 @@ ConfigureCheckpointsComponent = __decorate([
     <textarea readonly>{{getConfigurationString()}}</textarea>
 </div>
 <div>
+    <button [routerLink]="['/chekpoints']"><< Atrás</button>
     <button (click)="saveFile()">GUARDAR</button>
 </div>
     `

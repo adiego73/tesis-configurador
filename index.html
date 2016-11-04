@@ -16,6 +16,8 @@
 
     <script src="systemjs.config.js"></script>
     <script>
+        window.selectedMission = -1;
+
         System.import('app').catch(function (err) {
             console.error(err);
         });

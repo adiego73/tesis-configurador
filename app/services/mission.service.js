@@ -10,15 +10,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 const core_1 = require("@angular/core");
 const Mission_1 = require("../model/Mission");
-let MisionService = class MisionService {
-    getRandomMision() {
-        return new Mission_1.Mission({ title: "mision random", description: "texto de mision random" });
+let MissionService = class MissionService {
+    getRandomMission() {
+        var id = Math.floor((Math.random() * 10) + 1);
+        return new Mission_1.Mission({ id: id, title: "mision random ID: " + id, description: "texto de mision random" });
+    }
+    getMission(mission) {
+        return new Mission_1.Mission({ id: mission, title: "mision ID " + mission, description: "texto de mision" });
     }
 };
-MisionService = __decorate([
+MissionService = __decorate([
     core_1.Injectable(), 
     __metadata('design:paramtypes', [])
-], MisionService);
-exports.MisionService = MisionService;
+], MissionService);
+exports.MissionService = MissionService;
 ;
-//# sourceMappingURL=mision.service.js.map
+//# sourceMappingURL=mission.service.js.map

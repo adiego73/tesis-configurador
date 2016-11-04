@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {MisionService} from "../services/mision.service";
+import {MissionService} from "../services/mission.service.ts";
 import {MissionConfiguration} from "../model/MissionConfiguration";
 import {Mission} from "../model/Mission";
 
