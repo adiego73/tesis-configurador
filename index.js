@@ -1,4 +1,5 @@
 const electron = require('electron');
+const fs = require('fs');
 
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
@@ -6,6 +7,17 @@ const BrowserWindow = electron.BrowserWindow;
 var mainWindow;
 
 function createWindow () {
+    var args = process.argv.slice(2);
+    if(args.length > 0){
+        fs.readFile(args[0], 'utf8', function (err, data) {
+            if (err){
+                global.environmentConfiguration = undefined;
+                return;
+            }
+            global.environmentConfiguration = JSON.parse(data);
+        });
+    }
+
     // Create the browser window.
     mainWindow = new BrowserWindow({width: 800, height: 600});
 

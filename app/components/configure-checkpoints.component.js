@@ -21,6 +21,9 @@ let ConfigureCheckpointsComponent = class ConfigureCheckpointsComponent {
                 this.configuration.checkpoints.push(new Checkpoint_1.Checkpoint());
             }
         });
+        var environmentConfig = electron.remote.getGlobal('environmentConfiguration');
+        this.comments = environmentConfig.safe_spot;
+        console.log(environmentConfig.safe_spot);
     }
     getConfigurationString() {
         return JSON.stringify(this.configuration);
@@ -43,7 +46,11 @@ ConfigureCheckpointsComponent = __decorate([
 <div class="row" *ngFor="let checkpoint of configuration.checkpoints">
               <div class="row">
                     <div class="col-sm-4"><label>ID de destino: </label></div>
-                    <div class="col-sm-4"><input min="0" type="number" [(ngModel)]="checkpoint.id"/></div>
+                    <div class="col-sm-4">
+                        <select [(ngModel)]="checkpoint.id">
+                            <option *ngFor="let comment of comments" [value]="comment.Id">{{comment.Comentario}}</option>
+                        </select>
+                    </div>
                     <div class="col-sm-4"></div>
               </div>
               <div class="row">

@@ -4,6 +4,7 @@ import {Checkpoint} from "../model/Checkpoint";
 import {MissionConfiguration} from "../model/MissionConfiguration";
 
 declare function saveAs(data:Blob);
+declare var electron;
 
 @Component({
     selector: "configure-checkpoints",
@@ -17,7 +18,11 @@ declare function saveAs(data:Blob);
 <div class="row" *ngFor="let checkpoint of configuration.checkpoints">
               <div class="row">
                     <div class="col-sm-4"><label>ID de destino: </label></div>
-                    <div class="col-sm-4"><input min="0" type="number" [(ngModel)]="checkpoint.id"/></div>
+                    <div class="col-sm-4">
+                        <select [(ngModel)]="checkpoint.id">
+                            <option *ngFor="let comment of comments" [value]="comment.Id">{{comment.Comentario}}</option>
+                        </select>
+                    </div>
                     <div class="col-sm-4"></div>
               </div>
               <div class="row">
@@ -44,6 +49,7 @@ declare function saveAs(data:Blob);
 })
 export class ConfigureCheckpointsComponent {
     private configuration:MissionConfiguration;
+    private comments;
 
     constructor(private route:ActivatedRoute) {
         this.configuration = new MissionConfiguration();
@@ -52,6 +58,10 @@ export class ConfigureCheckpointsComponent {
                 this.configuration.checkpoints.push(new Checkpoint());
             }
         });
+
+        var environmentConfig = electron.remote.getGlobal('environmentConfiguration');
+        this.comments = environmentConfig.safe_spot;
+        console.log(environmentConfig.safe_spot);
     }
 
     public getConfigurationString(){

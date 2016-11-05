@@ -3,6 +3,7 @@ import {Mission} from "../model/Mission";
 import {MissionService} from "../services/mission.service";
 
 declare var selectedMission;
+declare var electron;
 
 @Component({
     selector: "mission-comp",
@@ -17,16 +18,25 @@ declare var selectedMission;
                 <div class="row mission-description">
                     {{mission.description}}
                 </div>
+                <div class="alert error" *ngIf="errorMessage != ''">
+                    {{errorMessage}}
+                </div>
                 <div class="row footer-buttons">
                     <button type="button" class="btn btn-default" (click)="getRandomMission()" >Obtener Nueva Mision</button>
-                    <button type="button" class="btn btn-primary" [routerLink]="['/chekpoints']">Siguiente >></button>
+                    <button type="button" class="btn btn-primary" [disabled]="errorMessage != ''" [routerLink]="['/chekpoints']">Siguiente >></button>
                 </div>`
 })
 export class MissionComponent{
     private mission:Mission;
+    public errorMessage:string = "";
 
     constructor(private _misionService:MissionService)
     {
+        if(!electron.remote.getGlobal('environmentConfiguration'))
+        {
+            this.errorMessage = "No se pudo obtener la configuración del environment (environment.json)";
+        }
+
         this.mission = (selectedMission != undefined && selectedMission > -1) ? _misionService.getMission(selectedMission) : this.mission = _misionService.getRandomMission();
         selectedMission = this.mission.id;
     }

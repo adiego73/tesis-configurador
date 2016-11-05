@@ -13,6 +13,10 @@ const mission_service_1 = require("../services/mission.service");
 let MissionComponent = class MissionComponent {
     constructor(_misionService) {
         this._misionService = _misionService;
+        this.errorMessage = "";
+        if (!electron.remote.getGlobal('environmentConfiguration')) {
+            this.errorMessage = "No se pudo obtener la configuración del environment (environment.json)";
+        }
         this.mission = (selectedMission != undefined && selectedMission > -1) ? _misionService.getMission(selectedMission) : this.mission = _misionService.getRandomMission();
         selectedMission = this.mission.id;
     }
@@ -35,9 +39,12 @@ MissionComponent = __decorate([
                 <div class="row mission-description">
                     {{mission.description}}
                 </div>
+                <div class="alert error" *ngIf="errorMessage != ''">
+                    {{errorMessage}}
+                </div>
                 <div class="row footer-buttons">
                     <button type="button" class="btn btn-default" (click)="getRandomMission()" >Obtener Nueva Mision</button>
-                    <button type="button" class="btn btn-primary" [routerLink]="['/chekpoints']">Siguiente >></button>
+                    <button type="button" class="btn btn-primary" [disabled]="errorMessage != ''" [routerLink]="['/chekpoints']">Siguiente >></button>
                 </div>`
     }), 
     __metadata('design:paramtypes', [mission_service_1.MissionService])
