@@ -35,12 +35,12 @@ declare function saveAs(data:Blob);
 <div class="row">
     <textarea readonly>{{getConfigurationString()}}</textarea>
 </div>
-<div class="row">
+<div class="row footer-buttons">
     <button type="button" class="btn btn-default" [routerLink]="['/chekpoints']"><< Atrás</button>
     <button type="button" class="btn btn-default" [routerLink]="['/']">Reiniciar</button>
     <button type="button" class="btn btn-primary" (click)="saveFile()">GUARDAR</button>
 </div>
-    `
+`
 })
 export class ConfigureCheckpointsComponent {
     private configuration:MissionConfiguration;

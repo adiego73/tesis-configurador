@@ -35,7 +35,7 @@ MissionComponent = __decorate([
                 <div class="row mission-description">
                     {{mission.description}}
                 </div>
-                <div class="row">
+                <div class="row footer-buttons">
                     <button type="button" class="btn btn-default" (click)="getRandomMission()" >Obtener Nueva Mision</button>
                     <button type="button" class="btn btn-primary" [routerLink]="['/chekpoints']">Siguiente >></button>
                 </div>`
