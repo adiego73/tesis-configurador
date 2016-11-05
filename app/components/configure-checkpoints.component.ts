@@ -8,21 +8,37 @@ declare function saveAs(data:Blob);
 @Component({
     selector: "configure-checkpoints",
     template: `
-<div *ngFor="let checkpoint of configuration.checkpoints">
-        <div>
-              <label>ID de destino: </label> <input min="0" type="number" [(ngModel)]="checkpoint.id"/> <br/>
-              <label>Tiempo en segundos: </label> <input min="0" type="number" [(ngModel)]="checkpoint.time"/> <br/>
-              <label>Altura en milímetros: </label> <input min="0" type="number" [(ngModel)]="checkpoint.altura"/>
-              <br/>
-              <hr>
-        </div>
+<div class="title">
+    Configurar destinos
 </div>
-<div>
+<div class="description">
+    Configure cada destino. Debe colocar el ID del destino, el tiempo que el robot debe permanecer sobre el destino, y la altura a la que debe sobrevolarlo.
+</div>
+<div class="row" *ngFor="let checkpoint of configuration.checkpoints">
+              <div class="row">
+                    <div class="col-sm-4"><label>ID de destino: </label></div>
+                    <div class="col-sm-4"><input min="0" type="number" [(ngModel)]="checkpoint.id"/></div>
+                    <div class="col-sm-4"></div>
+              </div>
+              <div class="row">
+                    <div class="col-sm-4"><label>Tiempo en segundos: </label></div>
+                    <div class="col-sm-4"><input min="0" type="number" [(ngModel)]="checkpoint.time"/></div>
+                    <div class="col-sm-4"></div>
+              </div>
+              <div class="row">
+                    <div class="col-sm-4"><label>Altura en milímetros: </label></div>
+                    <div class="col-sm-4"><input min="0" type="number" [(ngModel)]="checkpoint.altura"/></div>
+                    <div class="col-sm-4"></div>
+              </div>
+              <hr>
+</div>
+<div class="row">
     <textarea readonly>{{getConfigurationString()}}</textarea>
 </div>
-<div>
-    <button [routerLink]="['/chekpoints']"><< Atrás</button>
-    <button (click)="saveFile()">GUARDAR</button>
+<div class="row">
+    <button type="button" class="btn btn-default" [routerLink]="['/chekpoints']"><< Atrás</button>
+    <button type="button" class="btn btn-default" [routerLink]="['/']">Reiniciar</button>
+    <button type="button" class="btn btn-primary" (click)="saveFile()">GUARDAR</button>
 </div>
     `
 })

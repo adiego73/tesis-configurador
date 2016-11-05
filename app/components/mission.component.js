@@ -26,16 +26,18 @@ MissionComponent = __decorate([
         selector: "mission-comp",
         providers: [mission_service_1.MissionService],
         template: `
-    <h1>Mision:</h1>
-                <div>
-                    <h3>{{mission.title}}</h3>
-                    <article>
-                        {{mission.description}}
-                    </article>
+                <div class="row">
+                    <h1>Herramienta de configuración de misiones</h1>
                 </div>
-                <div>
-                    <button (click)="getRandomMission()" >Obtener Nueva Mision</button>
-                    <button [routerLink]="['/chekpoints']">Siguiente >></button>
+                <div class="row">
+                    {{mission.title}}
+                </div>
+                <div class="row mission-description">
+                    {{mission.description}}
+                </div>
+                <div class="row">
+                    <button type="button" class="btn btn-default" (click)="getRandomMission()" >Obtener Nueva Mision</button>
+                    <button type="button" class="btn btn-primary" [routerLink]="['/chekpoints']">Siguiente >></button>
                 </div>`
     }), 
     __metadata('design:paramtypes', [mission_service_1.MissionService])

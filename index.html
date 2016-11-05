@@ -4,6 +4,8 @@
     <title>Angular QuickStart</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="resources/css/styles.css">
 
     <!-- Polyfill(s) for older browsers -->
@@ -17,6 +19,7 @@
     <script src="systemjs.config.js"></script>
     <script>
         window.selectedMission = -1;
+        var electron = require('electron');
 
         System.import('app').catch(function (err) {
             console.error(err);
@@ -25,6 +28,9 @@
     <base href="/">
 </head>
 <body>
-<my-app>Loading...</my-app>
+    <div class="container">
+        <my-app>Loading...</my-app>
+    </div>
+
 </body>
 </html>

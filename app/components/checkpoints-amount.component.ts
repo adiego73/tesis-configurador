@@ -3,17 +3,29 @@ import {Component} from "@angular/core"
 @Component({
     selector:"",
     template:`
-        <div>
-            <label>Cantidad de destinos</label>
-             <input min="0" type="number" [(ngModel)]="amount"/>
+        <div class="title">
+            Cantidad de destinos
         </div>
-        <div>
-            <button [routerLink]="['/']"><< Atrás</button>
-            <button [disabled]="amount <= 0" [routerLink]="['/chekpoints-config', amount]">Siguiente >> {{amount}}</button>
+        <div class="description">
+            Seleccione la cantidad de destinos. Debe ser mayor a 0.
+        </div>
+        <div class="row">
+            <div class="col-sm-4"><label>Cantidad de destinos</label></div>
+            <div class="col-sm-4"><input min="0" type="number" [(ngModel)]="amount" (blur)="restoreAmount($event.target.value)"/></div>
+            <div class="col-sm-4"></div>
+        </div>
+        <div class="row">
+            <button type="button" class="btn btn-default" [routerLink]="['/']"><< Atrás</button>
+            <button type="button" class="btn btn-primary" [disabled]="amount <= 0" [routerLink]="['/chekpoints-config', amount]">Siguiente >> {{amount}}</button>
         </div>
     `
 })
 export class CheckpointsAmountComponent{
     amount:number = 0;
 
+    public restoreAmount(value)
+    {
+        if(value == "")
+            this.amount = 0;
+    }
 }
