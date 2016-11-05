@@ -11,12 +11,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 const core_1 = require("@angular/core");
 const Mission_1 = require("../model/Mission");
 let MissionService = class MissionService {
+    constructor() {
+        this.missions = [];
+        var missionConfig = electron.remote.getGlobal('missionsConfiguration');
+        missionConfig.forEach((elem, index, _) => {
+            this.missions.push(new Mission_1.Mission({ id: index, title: elem.title, description: elem.description }));
+        }, this);
+    }
     getRandomMission() {
-        var id = Math.floor((Math.random() * 10) + 1);
-        return new Mission_1.Mission({ id: id, title: "mision random ID: " + id, description: "texto de mision random" });
+        return this.missions[Math.floor(Math.random() * this.missions.length)];
     }
     getMission(mission) {
-        return new Mission_1.Mission({ id: mission, title: "mision ID " + mission, description: "texto de mision" });
+        return this.missions[mission];
     }
 };
 MissionService = __decorate([

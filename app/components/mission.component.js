@@ -14,7 +14,10 @@ let MissionComponent = class MissionComponent {
     constructor(_misionService) {
         this._misionService = _misionService;
         this.errorMessage = "";
-        if (!electron.remote.getGlobal('environmentConfiguration')) {
+        if (!electron.remote.getGlobal('missionsConfiguration')) {
+            this.errorMessage = "No se pudo obtener la configuración de las misiones (missions.json)";
+        }
+        else if (!electron.remote.getGlobal('environmentConfiguration')) {
             this.errorMessage = "No se pudo obtener la configuración del environment (environment.json)";
         }
         this.mission = (selectedMission != undefined && selectedMission > -1) ? _misionService.getMission(selectedMission) : this.mission = _misionService.getRandomMission();
@@ -33,7 +36,7 @@ MissionComponent = __decorate([
                 <div class="row">
                     <h1>Herramienta de configuración de misiones</h1>
                 </div>
-                <div class="row">
+                <div class="row mission-title">
                     {{mission.title}}
                 </div>
                 <div class="row mission-description">

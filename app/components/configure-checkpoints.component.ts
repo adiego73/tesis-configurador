@@ -32,7 +32,7 @@ declare var electron;
               </div>
               <div class="row">
                     <div class="col-sm-4"><label>Altura en milímetros: </label></div>
-                    <div class="col-sm-4"><input min="0" type="number" [(ngModel)]="checkpoint.altura"/></div>
+                    <div class="col-sm-4"><input min="0" type="number" step="100" [(ngModel)]="checkpoint.altura"/></div>
                     <div class="col-sm-4"></div>
               </div>
               <hr>
@@ -43,7 +43,7 @@ declare var electron;
 <div class="row footer-buttons">
     <button type="button" class="btn btn-default" [routerLink]="['/chekpoints']"><< Atrás</button>
     <button type="button" class="btn btn-default" [routerLink]="['/']">Reiniciar</button>
-    <button type="button" class="btn btn-primary" (click)="saveFile()">GUARDAR</button>
+    <button type="button" class="btn btn-primary" [disabled]="shouldBeDisabled()" (click)="saveFile()">GUARDAR</button>
 </div>
 `
 })
@@ -71,6 +71,15 @@ export class ConfigureCheckpointsComponent {
     public saveFile(){
         var file = new File([JSON.stringify(this.configuration)], "rutina.json", {type: "text/json;charset=utf-8"});
         saveAs(file);
+    }
+
+    public shouldBeDisabled()
+    {
+        for(var config in this.configuration.checkpoints){
+            if(this.configuration.checkpoints[config].id == 0)
+                return true;
+        }
+        return false;
     }
 
 }

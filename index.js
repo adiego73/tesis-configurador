@@ -18,6 +18,14 @@ function createWindow () {
         });
     }
 
+    fs.readFile("missions.json", 'utf8', function (err, data) {
+        if (err){
+            global.missionsConfiguration = undefined;
+            return;
+        }
+        global.missionsConfiguration = JSON.parse(data);
+    });
+
     // Create the browser window.
     mainWindow = new BrowserWindow({width: 800, height: 600});
 

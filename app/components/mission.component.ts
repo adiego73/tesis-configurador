@@ -12,7 +12,7 @@ declare var electron;
                 <div class="row">
                     <h1>Herramienta de configuración de misiones</h1>
                 </div>
-                <div class="row">
+                <div class="row mission-title">
                     {{mission.title}}
                 </div>
                 <div class="row mission-description">
@@ -32,7 +32,11 @@ export class MissionComponent{
 
     constructor(private _misionService:MissionService)
     {
-        if(!electron.remote.getGlobal('environmentConfiguration'))
+        if(!electron.remote.getGlobal('missionsConfiguration'))
+        {
+            this.errorMessage = "No se pudo obtener la configuración de las misiones (missions.json)";
+        }
+        else if(!electron.remote.getGlobal('environmentConfiguration'))
         {
             this.errorMessage = "No se pudo obtener la configuración del environment (environment.json)";
         }
