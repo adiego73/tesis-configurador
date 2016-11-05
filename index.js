@@ -7,7 +7,7 @@ const BrowserWindow = electron.BrowserWindow;
 var mainWindow;
 
 function createWindow () {
-    var args = process.argv.slice(2);
+    var args = process.argv.slice(1);
     if(args.length > 0){
         fs.readFile(args[0], 'utf8', function (err, data) {
             if (err){
@@ -33,7 +33,7 @@ function createWindow () {
     mainWindow.loadURL('file://'+__dirname+'/index.html');
 
     // Open the DevTools.
-    mainWindow.webContents.openDevTools();
+    //mainWindow.webContents.openDevTools();
 
     // Emitted when the window is closed.
     mainWindow.on('closed', function () {

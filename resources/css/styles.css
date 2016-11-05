@@ -41,4 +41,6 @@ textarea
 
 .error{
     background-color: #d9534f;
+    font-weight: bold;
+    color: whitesmoke;
 }

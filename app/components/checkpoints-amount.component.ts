@@ -16,7 +16,7 @@ import {Component} from "@angular/core"
         </div>
         <div class="row footer-buttons">
             <button type="button" class="btn btn-default" [routerLink]="['/']"><< Atrás</button>
-            <button type="button" class="btn btn-primary" [disabled]="amount <= 0" [routerLink]="['/chekpoints-config', amount]">Siguiente >> {{amount}}</button>
+            <button type="button" class="btn btn-primary" [disabled]="amount <= 0" [routerLink]="['/chekpoints-config', amount]">Siguiente >></button>
         </div>
     `
 })
